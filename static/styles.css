@@ -1,0 +1,50 @@
+body {
+    background-color: black;
+    font-family: sans-serif;
+}
+
+.button button {
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    justify-content: center; 
+
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+.button-t {background-color: #4CAF50; color: white;} /* Green */
+.button-d {background-color: #008CBA; color: white;} /* Blue */
+.button-f {background-color: #f44336; color: white;} /* Red */ 
+.button-r {background-color: #e7e7e7; color: black;} /* Gray */ 
+.button-test {background-color: #555555; color: white;} /* Black */
+
+/* div.buttons {
+    display: flex;
+    /* align-items: center;
+    position: relative;
+    margin: 0; 
+    justify-content: center; 
+} */
+div.shoes {
+    display: flex;
+    justify-content: center;
+}
+h1 {
+    color: steelblue;
+}
+h2 {
+    color: darkgray;
+}
+p {
+    color: slategray;
+}

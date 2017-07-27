@@ -1,4 +1,5 @@
-var app = require('express')();
+var express = require('express');
+var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var SerialPort = require('serialport');
@@ -7,6 +8,8 @@ var path = require('path');
 var Readline = SerialPort.parsers.Readline;
 
 const BAUDRATE = 115200;
+
+app.use('/public', express.static('static'))
 
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "index.html"));
