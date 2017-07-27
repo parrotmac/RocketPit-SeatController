@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Seat Controller</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    </head>
+    <body>
+
+        <button class="btn btn-default btn-lg cmdBtn" data-motor="F" data-direction="+">Front Height Up</button>
+        <button class="btn btn-default btn-lg cmdBtn" data-motor="F" data-direction="-">Front Height Down</button>
+
+        <br>
+
+        <button class="btn btn-default btn-lg cmdBtn" data-motor="R" data-direction="+">Rear Height Up</button>
+        <button class="btn btn-default btn-lg cmdBtn" data-motor="R" data-direction="-">Rear Height Down</button>
+
+        <br>
+
+        <button class="btn btn-default btn-lg cmdBtn" data-motor="D" data-direction="+">Distance Forward</button>
+        <button class="btn btn-default btn-lg cmdBtn" data-motor="D" data-direction="-">Distance Back</button>
+
+        <br>
+
+        <button class="btn btn-default btn-lg cmdBtn" data-motor="T" data-direction="+">Tilt Forward</button>
+        <button class="btn btn-default btn-lg cmdBtn" data-motor="T" data-direction="-">Tilt Back</button>
+
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+        <script>
+        $(function () {
+            var socket = io();
+            $('.cmdBtn').mousedown(function(){
+                const motor = this.dataset.motor;
+                const direction = this.dataset.direction;
+                console.log(motor, direction);
+                socket.emit('command-seat', motor + ":" + direction);
+            });
+            $('.cmdBtn').mouseup(function(){
+                const motor = this.dataset.motor;
+                console.log(motor);
+                socket.emit('command-seat', motor + ":0");
+            });
+        });
+        </script>
+    </body>
+</html>
