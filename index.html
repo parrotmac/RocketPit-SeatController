@@ -12,21 +12,10 @@
     <div class="button">
         <h1>Buttons to push!</h1>
 
-        <h2>Tilt</h2>
-        <button class="cmdBtn button-t" data-motor="T" data-direction="-">Tilt Backward</button>
-        <button class="cmdBtn button-t" data-motor="T" data-direction="+">Tilt Forward</button>
-
-        <h2>Direction</h2>
-        <button class="cmdBtn button-d" data-motor="D" data-direction="-">Direction Backward</button>
-        <button class="cmdBtn button-d" data-motor="D" data-direction="+">Direction Forward</button>
-
-        <h2>Front</h2>
-        <button class="cmdBtn button-f" data-motor="F" data-direction="-">Front Down</button>
-        <button class="cmdBtn button-f" data-motor="F" data-direction="+">Front Up</button>
-
-        <h2>Rear</h2>
-        <button class="cmdBtn button-r" data-motor="R" data-direction="-">Rear Down</button>
-        <button class="cmdBtn button-r" data-motor="R" data-direction="+">Rear Up</button>
+        <h2>Volume Control</h2>
+        <button class="cmdBtn button-t" data-radio="VOLUP">Volume Up</button>
+        <br>
+        <button class="cmdBtn button-t" data-radio="VOLDN">Volume Down</button>
     </div>
 
     <script src="/socket.io/socket.io.js"></script>
@@ -35,15 +24,14 @@
         $(function () {
             var socket = io();
             function stopmotor() {
-                const motor = this.dataset.motor;
-                console.log(motor);
-                socket.emit('command-seat', motor + ":0");
+                const radioCMD = this.dataset.radio;
+                console.log(radioCMD);
+                socket.emit('command-radio', radioCMD);
             }
             function startmotor() {
-                const motor = this.dataset.motor;
-                const direction = this.dataset.direction;
-                console.log(motor, direction);
-                socket.emit('command-seat', motor + ":" + direction);
+                const radioCMD = this.dataset.radio;
+                console.log(radioCMD);
+                socket.emit('command-radio', radioCMD);
             }
             $('.cmdBtn').on("touchstart mousedown",startmotor);
             $('.cmdBtn').on("mouseup mouseleave touchend", stopmotor);

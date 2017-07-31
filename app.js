@@ -70,7 +70,7 @@ if (!commander.port) {
 
     io.on('connection', function (socket) {
         currentlyConnected = true;
-        socket.on('command-seat', (commandPayload) => {
+        socket.on('command-radio', (commandPayload) => {
             console.log(commandPayload);
             const cmdString = commandPayload + "\n";
             if (port.isOpen) {
