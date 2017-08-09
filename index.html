@@ -1,12 +1,10 @@
 <!DOCTYPE HTML>
 <html>
-
 <head>
     <meta charset="utf-8" />
     <title>Seat Controller</title>
     <link rel="stylesheet" href="public/styles.css">
 </head>
-
 <body>
 
     <div class="button">
@@ -33,24 +31,31 @@
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <script>
         $(function () {
+
             var socket = io();
+
             function stopmotor() {
                 const motor = this.dataset.motor;
                 console.log(motor);
                 socket.emit('command-seat', motor + ":0");
             }
+
             function startmotor() {
                 const motor = this.dataset.motor;
                 const direction = this.dataset.direction;
                 console.log(motor, direction);
                 socket.emit('command-seat', motor + ":" + direction);
             }
+
             $('.cmdBtn').on("touchstart mousedown",startmotor);
             $('.cmdBtn').on("mouseup mouseleave touchend", stopmotor);
+
+            /* This prevents a contextmenu from appearing on Windows when a button is long-pressed */
             $('.cmdBtn').on("contextmenu", event => {
                 event.preventDefault();
                 return false;
             })
+            
         });
     </script>
 </body>
